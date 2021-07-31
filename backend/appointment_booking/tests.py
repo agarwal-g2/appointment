@@ -37,7 +37,3 @@ class AppointmentBookingTestCase(APITestCase):
         )
 
         assert response.status_code == 409
-
-    def test_duplicate_appointment(self):
-        response = self.client.get(f"/appointments/10/")
-        assert response.json()["pk"] == ""
