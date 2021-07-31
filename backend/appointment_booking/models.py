@@ -11,3 +11,17 @@ class Patient(models.Model):
 class Appointment(models.Model):
     start_time = models.DateTimeField(auto_now=False)
     end_time = models.DateTimeField(auto_now=False)
+
+class Book(models.Model):
+    STATUS = (
+        ("SCHEDULED", 'scheduled'),
+        ("COMPLETED", 'completed'),
+        ("CANCELLED", 'cancelled'),
+    )
+    appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    status = models.CharField(max_length=20,
+                              choices=STATUS,
+                              default="SCHEDULED")  # scheduled/completed/cancelled
+    created = models.DateTimeField(auto_now=True)
+
