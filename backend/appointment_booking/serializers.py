@@ -19,7 +19,11 @@ class AppointmentSerializer(serializers.ModelSerializer):
         read_only_fields = ["pk"]
         fields = ["pk", "start_time", "end_time"]
 
+
 class BookSerializer(serializers.ModelSerializer):
+    patient = PatientSerializer(read_only=True)
+    appointment = AppointmentSerializer(read_only=True)
+
     class Meta:
         model = Book
         read_only_fields = ["pk"]

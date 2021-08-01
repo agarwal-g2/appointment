@@ -20,13 +20,14 @@ class PatientViewSet(viewsets.ModelViewSet):
     serializer_class = PatientSerializer
 
 
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.select_related('patient','appointment').all()
+    serializer_class = BookSerializer
+
+
 class AppointmentViewSet(viewsets.ModelViewSet):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
-
-# class BookViewSet(viewsets.ModelViewSet):
-#     queryset = Book.objects.all()
-#     serializer_class = BookSerializer
 
     @action(detail=True, methods=["patch"])
     def book(self, request, pk=None):

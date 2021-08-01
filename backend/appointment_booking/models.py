@@ -19,7 +19,7 @@ class Book(models.Model):
         ("CANCELLED", 'cancelled'),
     )
     appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    patient = models.ForeignKey(Patient, related_name='patient', on_delete=models.CASCADE)
     status = models.CharField(max_length=20,
                               choices=STATUS,
                               default="SCHEDULED")  # scheduled/completed/cancelled

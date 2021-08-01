@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework import routers
 
-from .views import AppointmentViewSet, PatientViewSet
+from .views import AppointmentViewSet, PatientViewSet, BookViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 # https://www.django-rest-framework.org/api-guide/routers/#api-guide
@@ -9,6 +9,7 @@ from .views import AppointmentViewSet, PatientViewSet
 router = routers.DefaultRouter()
 router.register(r"appointments", AppointmentViewSet)
 router.register(r"patients", PatientViewSet)
+router.register(r"book", BookViewSet)
 
 # Wire up our API using automatic URL routing.
 urlpatterns = [

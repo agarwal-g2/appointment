@@ -3,6 +3,8 @@ import "./App.css";
 import CreateAppointment from "./components/CreateAppointment";
 import AppointmentsList from "./components/AppointmentsList";
 import PatientsList from "./components/PatientsList";
+import CreatePatient from "./components/CreatePatient";
+import CreatePatientAppointment from "./components/CreatePatientAppointment";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -35,9 +37,11 @@ const App = () => {
       <div className="App-logo">
         <img src={logo} alt="logo" />
       </div>
+        <CreatePatient />
       <CreateAppointment refetchAppointments={refetchAppointments} />
       <AppointmentsList appointments={appointments} />
       <PatientsList />
+        <CreatePatientAppointment appointments={appointments} />
     </div>
   );
 };
