@@ -1,6 +1,6 @@
 #Approach 
 
-There were two main approaches to attempt this assignment
+There were two main approaches to attempt this
 
 - First to link paitientId inside the appointment model and store it But the problem with this approach was we already had a patch request which was accepting appointment id, so it was not possible to pass the appointment id at the time of creation unless we need to create another post API for the same. But then the user experience will be bad as we first need to create an appointment and then map it with the patient id. And since I need to fix it in the existing code base so I didn’t choose this approach.
 
