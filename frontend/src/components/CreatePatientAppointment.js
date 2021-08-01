@@ -20,7 +20,9 @@ const createPatientAppointment = async (patientId, appointmentId) => {
     return result.data;
   } catch (e) {
     console.error(e);
-    return e.response.data ? e.response.data :"Unable to create patient appointment"
+    if (e.response == undefined)
+      return "Unable to create patient appointment"
+    return e.response.data
   }
 };
 
@@ -57,36 +59,38 @@ const CreatePatientAppointment = ( {appointments} ) => {
     setAppointmentId = (event) => this.setState({appointmentId : event.target[1].value})
 
     const result = await createPatientAppointment(patientId, appointmentId);
-
-    setSubmitMessage(JSON.stringify(result));
     setIsLoading(false);
+    setSubmitMessage(JSON.stringify(result));
   };
 
   return (
     <>
       <h2>Book appointment for patient</h2>
       <form onSubmit={handleSubmit}>
-        <label >Patient Name:</label><br/>
+        <label >Patient Name:</label><br/><br/>
         { patientList &&
           <select
             onChange={setPatientId}
           >
+            <option >Select Patient</option>
+
             {patientList.map((option) => (
               <option value={option.value}>{option.label}</option>
             ))}
           </select>
-        }<br/>
-      <label >Appointment Start:</label><br/>
+        }<br/><br/>
+      <label >Appointment Start:</label><br/><br/>
         { appointmentList &&
           <select
             onChange={setAppointmentId}
           >
+            <option >Select Appointment</option>
             {appointmentList.map((option) => (
               <option value={option.value}>{option.label}</option>
             ))}
           </select>
         }
-        <br/>
+        <br/><br/>
         <button type="submit" disabled={isLoading}>
           Submit
         </button>

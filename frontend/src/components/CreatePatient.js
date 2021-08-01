@@ -30,6 +30,7 @@ const CreatePatient = ( ) => {
 
     const result = await createPatient(firstName, lastName);
     if (!result) {
+      setIsLoading(false);
       setSubmitMessage("Unable to create patient");
       return;
     }

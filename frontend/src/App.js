@@ -6,6 +6,9 @@ import PatientsList from "./components/PatientsList";
 import CreatePatient from "./components/CreatePatient";
 import CreatePatientAppointment from "./components/CreatePatientAppointment";
 import PatientAppointmentList from "./components/PatientAppointmentList";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+
 
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -39,12 +42,29 @@ const App = () => {
       <div className="App-logo">
         <img src={logo} alt="logo" />
       </div>
-      <CreatePatient />
+        <Tabs>
+    <TabList>
+      <Tab>Patient</Tab>
+      <Tab>Appointment</Tab>
+        <Tab>Book Patient Appointment</Tab>
+    </TabList>
+    <TabPanel>
+       <CreatePatient />
+         <PatientsList />
+    </TabPanel>
+    <TabPanel>
       <CreateAppointment refetchAppointments={refetchAppointments} />
       <AppointmentsList appointments={appointments} />
-      <PatientsList />
-      <CreatePatientAppointment appointments={appointments} />
+    </TabPanel>
+    <TabPanel>
+       <CreatePatientAppointment appointments={appointments} />
       <PatientAppointmentList />
+    </TabPanel>
+  </Tabs>
+
+
+
+
     </div>
   );
 };

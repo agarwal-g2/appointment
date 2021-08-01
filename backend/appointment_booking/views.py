@@ -34,7 +34,6 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         appointment = Appointment.objects.get(pk=pk)
         patient = Patient.objects.get(pk=request.data.get("patient_pk"))
         logger.info("Booking appointment %s for patient %s", appointment.pk, patient.pk)
-        # TODO: implement appointment booking logic
         # Check if the appointment is already booked
         if self.get_book_by_appointment(appointment) :
             return Response("Appointment is already booked, please try for some other appointment.", status=status.HTTP_409_CONFLICT)
@@ -52,5 +51,4 @@ class AppointmentViewSet(viewsets.ModelViewSet):
             appointment = appointment,
             status = "SCHEDULED"
         )
-
         return True if book else False
